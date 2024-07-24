@@ -1,23 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.adleritech</groupId>
+    <groupId>net.testuje.app</groupId>
     <artifactId>flexibee</artifactId>
     <packaging>pom</packaging>
-    <version>0.3.30-SNAPSHOT</version>
+    <version>0.3.33</version>
     <modules>
         <module>flexibee-core</module>
     </modules>
-
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>Pavel-sykora</name>
+            <url>https://maven.pkg.github.com/pavel-sykora/flexibee</url>
+        </repository>
+    </distributionManagement>
     <name>flexibee</name>
     <description>flexibee sdk</description>
-    <url>https://github.com/adleritech/flexibee</url>
+    <url>https://github.com/pavel-sykora/flexibee</url>
 
     <developers>
         <developer>
             <id>liftago</id>
             <name>Liftago</name>
             <email>dev@liftago.com</email>
+        </developer>
+        <developer>
+            <id>pavel.sykora</id>
+            <name>Pavel Sýkora</name>
+            <email>pavel.sykora@testuje.net</email>
+            <url>https://github.com/pavel-sykora/</url>
         </developer>
     </developers>
 
@@ -30,7 +42,7 @@
     <licenses>
         <license>
             <name>Apache License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
             <distribution>repo</distribution>
         </license>
     </licenses>
@@ -72,6 +84,47 @@
     </repositories>
 
     <profiles>
+        <profile>
+            <id>github</id>
+            <repositories>
+                <repository>
+                    <id>central</id>
+                    <url>https://repo1.maven.org/maven2</url>
+                </repository>
+                <repository>
+                    <id>github</id>
+                    <url>https://maven.pkg.github.com/pavel-sykora/flexibee</url>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
+            <distributionManagement>
+                <repository>
+                    <id>github</id>
+                    <name>Pavel-sykora</name>
+                    <url>https://maven.pkg.github.com/pavel-sykora/flexibee</url>
+                </repository>
+            </distributionManagement>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>3.0.1</version>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
         <profile>
             <!-- Profile to relase to maven central use -P central -->
             <id>central</id>
@@ -133,5 +186,4 @@
             </build>
         </profile>
     </profiles>
-
 </project>
